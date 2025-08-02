@@ -13,11 +13,11 @@ export default function AuthCallback() {
     const handleCallback = async () => {
       try {
         const user = await getCurrentUser();
-        const token = localStorage.getItem('accessToken');
+        // Token is now handled via httpOnly cookies automatically
         
         dispatch(login({
           user: user,
-          token: token
+          token: null // No need to pass token as it's in httpOnly cookie
         }));
         
         // Check for redirect parameter in URL search params

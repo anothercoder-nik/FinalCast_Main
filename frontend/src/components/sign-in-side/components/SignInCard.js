@@ -82,10 +82,8 @@ export default function SignInCard({ redirectTo }) {
         return;
       }
       
-      // Store token in localStorage for persistence
-      if (response.token) {
-        localStorage.setItem('accessToken', response.token);
-      }
+      // Token is now handled via httpOnly cookies automatically
+      // No need to store in localStorage
       
       dispatch(login({
         user: response.user,
@@ -106,10 +104,8 @@ export default function SignInCard({ redirectTo }) {
   };
 
   const handle2FASuccess = (response, redirectTarget) => {
-    // Store token in localStorage for persistence
-    if (response.token) {
-      localStorage.setItem('accessToken', response.token);
-    }
+    // Token is now handled via httpOnly cookies automatically
+    // No need to store in localStorage
     
     dispatch(login({
       user: response.user,

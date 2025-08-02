@@ -8,16 +8,9 @@ export const loginUser = async (email, password, twoFactorToken, backupCode) => 
         twoFactorToken,
         backupCode
     })
-    // Extract token from cookies if not in response
-    const token = document.cookie
-        .split('; ')
-        .find(row => row.startsWith('accessToken='))
-        ?.split('=')[1];
     
-    return {
-        ...data,
-        token: token
-    };
+    // No need to extract token from cookies - httpOnly cookies are handled automatically
+    return data;
 }
 
 export const registerUser = async (name, password, email, otpId) => {
@@ -25,21 +18,13 @@ export const registerUser = async (name, password, email, otpId) => {
     const {data} = await axiosInstance.post("/api/auth/register", {name, email, password, otpId})
     console.log('Registration response:', data);
     
-    // Extract token from cookies if not in response
-    const token = document.cookie
-        .split('; ')
-        .find(row => row.startsWith('accessToken='))
-        ?.split('=')[1];
-    
-    return {
-        ...data,
-        token: token
-    };
+    // No need to extract token from cookies - httpOnly cookies are handled automatically
+    return data;
 }
 
 export const logoutUser = async () => {
     const {data} = await axiosInstance.post("/api/auth/logout")
-    localStorage.removeItem('accessToken');
+    // No need to remove from localStorage since we're using httpOnly cookies
     return data
 }
 
