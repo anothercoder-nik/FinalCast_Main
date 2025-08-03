@@ -1,7 +1,7 @@
 export const cookieOptions = {
     httpOnly: true,
-    secure: true,                    // Always secure because Render uses HTTPS
-    sameSite: 'None',                // Required for cross-origin cookies
-    maxAge: 1000 * 60 * 60,          // 1 hour
-    domain: '.onrender.com'          // Hardcoded for Render subdomains
-};
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+    maxAge: 1000 * 60 * 60, // 1 hour
+    domain: process.env.NODE_ENV === "production" ? ".onrender.com" : undefined  // <--- Important dynamic check
+}
