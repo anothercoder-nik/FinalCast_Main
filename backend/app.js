@@ -38,6 +38,7 @@ app.use(passport.initialize());
 const allowedOrigins = [
     "http://localhost:5173",
     "http://localhost:3000",
+  "https://finalcast.tech",
     process.env.FRONTEND_URL,
     // Add specific Render.com domains
     "https://finalcast.onrender.com",
