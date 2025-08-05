@@ -1,7 +1,7 @@
-export const cookieOptions = {
+res.cookie("accessToken", token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
-    maxAge: 1000 * 60 * 60, // 1 hour
-    domain: process.env.NODE_ENV === "production" ? ".onrender.com" : undefined  // <--- Important dynamic check
-}
+    secure: true,
+    domain: ".finalcast.tech",   // IMPORTANT: subdomain-aware cookie
+    sameSite: 'None',            // Required for cross-site requests
+    maxAge: 7 * 24 * 60 * 60 * 1000  // 7 days
+});
